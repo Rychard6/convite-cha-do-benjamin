@@ -18,7 +18,7 @@ type IllustrationProps = {
  */
 export function Illustration({ src, alt, className, sizes, priority }: IllustrationProps) {
   return (
-    <span className={cn("relative block select-none pointer-events-none", className)}>
+    <span className={cn("block select-none pointer-events-none", className)}>
       <Image
         src={`/assets/illustrations/${src}`}
         alt={alt}

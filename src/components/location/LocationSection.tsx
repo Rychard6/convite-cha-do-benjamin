@@ -10,7 +10,7 @@ export function LocationSection() {
     <ScreenShell id="location">
       <FloatingDecorations
         items={[
-          { src: "objects/balloon.png", alt: "", className: "right-[-10%] top-8 h-24 w-24", animation: "animate-float" },
+          { src: "objects/balloon.png", alt: "", className: "left-1/2 top-[-6rem] h-24 w-24 -translate-x-1/2", animation: "animate-float" },
           { src: "decoration/cloud-02.png", alt: "", className: "left-[-8%] top-24 h-14 w-24", animation: "animate-drift-slow" },
           { src: "decoration/star-small.png", alt: "", className: "left-10 bottom-24 h-5 w-5", animation: "animate-twinkle" },
         ]}
@@ -67,4 +67,3 @@ export function LocationSection() {
     </ScreenShell>
   );
 }
-

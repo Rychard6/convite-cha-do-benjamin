@@ -14,7 +14,7 @@ export function DiaperPreviewSection({ onOpenDiapers }: DiaperPreviewSectionProp
     <ScreenShell id="diapers">
       <FloatingDecorations
         items={[
-          { src: "decoration/leaf.png", alt: "", className: "left-4 top-6 h-8 w-8", animation: "animate-sway" },
+          { src: "decoration/leaf.png", alt: "", className: "left-6 top-8 h-16 w-16", animation: "animate-sway" },
           { src: "decoration/heart.png", alt: "", className: "right-6 top-10 h-6 w-6", animation: "animate-twinkle" },
         ]}
       />
