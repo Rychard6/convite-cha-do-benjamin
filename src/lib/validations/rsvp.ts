@@ -1,4 +1,5 @@
 import type { RsvpRequest } from "@/types/rsvp";
+import type { AttendanceStatus } from "@/types/guest";
 import { eventConfig } from "@/config/event";
 
 export type ValidationResult =
@@ -36,8 +37,11 @@ export function validateRsvpPayload(body: unknown): ValidationResult {
     fieldErrors.name = "Nome muito longo.";
   }
 
-  const attendanceStatus = payload.attendanceStatus;
-  if (attendanceStatus !== "confirmed" && attendanceStatus !== "declined") {
+  const attendanceStatus: AttendanceStatus | undefined =
+    payload.attendanceStatus === "confirmed" || payload.attendanceStatus === "declined"
+      ? payload.attendanceStatus
+      : undefined;
+  if (!attendanceStatus) {
     fieldErrors.attendanceStatus = "Selecione se você irá ou não.";
   }
 
@@ -73,7 +77,7 @@ export function validateRsvpPayload(body: unknown): ValidationResult {
     fieldErrors.name = fieldErrors.name ?? "Requisição inválida.";
   }
 
-  if (Object.keys(fieldErrors).length > 0 || !requestId) {
+  if (Object.keys(fieldErrors).length > 0 || !requestId || !attendanceStatus) {
     return { valid: false, fieldErrors };
   }
 
