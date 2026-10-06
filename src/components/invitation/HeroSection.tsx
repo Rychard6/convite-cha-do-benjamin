@@ -12,7 +12,7 @@ type HeroSectionProps = {
 /** Primeira cena: a mais impactante visualmente, abre a experiência (seção 7). */
 export function HeroSection({ onOpenRsvp }: HeroSectionProps) {
   return (
-    <ScreenShell id="hero">
+    <ScreenShell id="hero" className="py-5 sm:py-16">
       <FloatingDecorations
         items={[
           { src: "decoration/cloud-01.png", alt: "", className: "left-[-10%] top-10 h-20 w-32", animation: "animate-drift" },
@@ -27,13 +27,13 @@ export function HeroSection({ onOpenRsvp }: HeroSectionProps) {
       <InvitationHero />
       <EventDetails />
 
-      <div className="mt-10 flex w-full flex-col items-center gap-3">
+      <div className="mt-5 flex w-full flex-col items-center gap-3 sm:mt-10">
         <Button variant="primary" fullWidth className="max-w-xs" onClick={onOpenRsvp}>
           Confirmar presença
         </Button>
       </div>
 
-      <ScrollCue className="absolute bottom-6 left-1/2 -translate-x-1/2" />
+      <ScrollCue className="mt-3 sm:mt-6" />
     </ScreenShell>
   );
 }

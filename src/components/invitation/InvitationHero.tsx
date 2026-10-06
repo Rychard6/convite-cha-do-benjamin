@@ -7,7 +7,7 @@ import { Illustration } from "@/components/ui/Illustration";
 export function InvitationHero() {
   return (
     <div className="relative flex w-full flex-col items-center text-center">
-      <div className="relative mb-2 h-40 w-40 animate-fade-in-scale sm:h-48 sm:w-48">
+      <div className="relative mb-1 h-32 w-32 animate-fade-in-scale sm:mb-2 sm:h-48 sm:w-48">
         <Illustration
           src="characters/teddy-balloon.png"
           alt="Ursinho viajando em um balão de ar quente"
@@ -17,13 +17,13 @@ export function InvitationHero() {
         />
       </div>
 
-      <h1 className="font-script text-5xl font-semibold leading-tight text-green-dark sm:text-6xl">
+      <h1 className="font-script text-4xl font-semibold leading-tight text-green-dark sm:text-6xl">
         Chá do
         <br />
         Benjamin
       </h1>
 
-      <div className="relative mt-4 h-20 w-32 animate-fade-in sm:h-24 sm:w-40">
+      <div className="relative mt-2 h-16 w-28 animate-fade-in sm:mt-4 sm:h-24 sm:w-40">
         <Illustration
           src="characters/teddy-airplane.png"
           alt="Ursinho pilotando um aviãozinho"

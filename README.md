@@ -34,6 +34,8 @@ Veja [.env.example](.env.example). Todas as credenciais sensíveis (Supabase ser
 
 Se o Supabase falhar, o RSVP é enviado à planilha e ao Telegram. Configure `TELEGRAM_BOT_TOKEN` com o token criado pelo BotFather e `TELEGRAM_CHAT_ID` com o chat que receberá os alertas. O fallback é considerado concluído se pelo menos um desses destinos aceitar a resposta; se ambos falharem, o formulário informa que não foi possível registrar a presença. A planilha continua sendo a fonte principal de contingência e o Telegram recebe o nome, a resposta, os acompanhantes e o ID da requisição.
 
+Na planilha, novos registros exibem nome, resposta e data/hora no fuso de São Paulo (`dd/mm/aaaa às hh:mm`), sem UUID. A aba de acompanhantes exibe o nome do convidado, o nome de cada acompanhante e a data/hora.
+
 ## Estrutura
 
 ```

@@ -28,7 +28,6 @@ function getSheetsClient() {
  * Retorna se o registro foi feito para permitir contingência quando necessário.
  */
 export async function appendRsvpToSheet(
-  recordId: string,
   data: RsvpRequest
 ): Promise<boolean> {
   try {
@@ -39,26 +38,35 @@ export async function appendRsvpToSheet(
     }
 
     const { sheets, spreadsheetId } = client;
-    const confirmedAt = new Date().toISOString();
+    const confirmedAt = new Intl.DateTimeFormat("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    })
+      .format(new Date())
+      .replace(", ", " às ");
     const statusLabel = data.attendanceStatus === "confirmed" ? "Confirmado" : "Não poderá ir";
 
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: "Convidados!A:D",
+      range: "Convidados!A:C",
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[recordId, data.name, statusLabel, confirmedAt]],
+        values: [[data.name, statusLabel, confirmedAt]],
       },
     });
 
     if (data.attendanceStatus === "confirmed" && data.companions.length > 0) {
       await sheets.spreadsheets.values.append({
         spreadsheetId,
-        range: "Acompanhantes!A:D",
+        range: "Acompanhantes!A:C",
         valueInputOption: "USER_ENTERED",
         requestBody: {
           values: data.companions.map((companion) => [
-            recordId,
             data.name,
             companion.name,
             confirmedAt,

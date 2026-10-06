@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     const { guestId } = await persistRsvp(validation.data);
 
     // Google Sheets é apenas acompanhamento; falhas aqui não devem derrubar o RSVP.
-    void appendRsvpToSheet(guestId, validation.data);
+    void appendRsvpToSheet(validation.data);
 
     return NextResponse.json<RsvpResponse>({
       success: true,
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     console.error("Falha ao salvar RSVP no Supabase; tentando contingência:", error);
 
     const [sheetSaved, telegramNotified] = await Promise.all([
-      appendRsvpToSheet(validation.data.requestId, validation.data),
+      appendRsvpToSheet(validation.data),
       notifyRsvpFallback(validation.data),
     ]);
 
