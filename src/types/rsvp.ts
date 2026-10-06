@@ -14,7 +14,8 @@ export type RsvpRequest = {
 export type RsvpResponse =
   | {
       success: true;
-      guestId: string;
+      storage: "supabase" | "fallback";
+      guestId?: string;
     }
   | {
       success: false;

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { validateRsvpPayload } from "@/lib/validations/rsvp";
 import { persistRsvp } from "@/lib/supabase/rsvp";
 import { appendRsvpToSheet } from "@/lib/google-sheets/appendRsvp";
+import { notifyRsvpFallback } from "@/lib/telegram/notifyRsvpFallback";
 import type { RsvpResponse } from "@/types/rsvp";
 
 export const runtime = "nodejs";
@@ -37,9 +38,32 @@ export async function POST(request: NextRequest) {
     // Google Sheets é apenas acompanhamento; falhas aqui não devem derrubar o RSVP.
     void appendRsvpToSheet(guestId, validation.data);
 
-    return NextResponse.json<RsvpResponse>({ success: true, guestId });
+    return NextResponse.json<RsvpResponse>({
+      success: true,
+      storage: "supabase",
+      guestId,
+    });
   } catch (error) {
-    console.error("Erro ao processar RSVP:", error);
+    console.error("Falha ao salvar RSVP no Supabase; tentando contingência:", error);
+
+    const [sheetSaved, telegramNotified] = await Promise.all([
+      appendRsvpToSheet(validation.data.requestId, validation.data),
+      notifyRsvpFallback(validation.data),
+    ]);
+
+    if (sheetSaved || telegramNotified) {
+      console.warn("RSVP aceito pelo mecanismo de contingência.", {
+        sheetSaved,
+        telegramNotified,
+        requestId: validation.data.requestId,
+      });
+
+      return NextResponse.json<RsvpResponse>({
+        success: true,
+        storage: "fallback",
+      });
+    }
+
     return NextResponse.json<RsvpResponse>(
       {
         success: false,

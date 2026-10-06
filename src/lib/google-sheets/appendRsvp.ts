@@ -25,17 +25,17 @@ function getSheetsClient() {
 
 /**
  * Registra o RSVP na planilha de acompanhamento dos organizadores.
- * Falha de forma silenciosa (apenas loga) pois o Supabase já é a fonte oficial.
+ * Retorna se o registro foi feito para permitir contingência quando necessário.
  */
 export async function appendRsvpToSheet(
-  guestId: string,
+  recordId: string,
   data: RsvpRequest
-): Promise<void> {
+): Promise<boolean> {
   try {
     const client = getSheetsClient();
     if (!client) {
       console.warn("Google Sheets não configurado, pulando sincronização.");
-      return;
+      return false;
     }
 
     const { sheets, spreadsheetId } = client;
@@ -47,7 +47,7 @@ export async function appendRsvpToSheet(
       range: "Convidados!A:D",
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[guestId, data.name, statusLabel, confirmedAt]],
+        values: [[recordId, data.name, statusLabel, confirmedAt]],
       },
     });
 
@@ -58,7 +58,7 @@ export async function appendRsvpToSheet(
         valueInputOption: "USER_ENTERED",
         requestBody: {
           values: data.companions.map((companion) => [
-            guestId,
+            recordId,
             data.name,
             companion.name,
             confirmedAt,
@@ -66,7 +66,10 @@ export async function appendRsvpToSheet(
         },
       });
     }
+
+    return true;
   } catch (error) {
     console.error("Falha ao sincronizar com Google Sheets:", error);
+    return false;
   }
 }

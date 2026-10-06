@@ -1,7 +1,6 @@
 import { InvitationHero } from "./InvitationHero";
 import { EventDetails } from "./EventDetails";
 import { Button } from "@/components/ui/Button";
-import { ShareButton } from "@/components/ui/ShareButton";
 import { ScreenShell } from "@/components/ui/ScreenShell";
 import { FloatingDecorations } from "@/components/ui/FloatingDecorations";
 import { ScrollCue } from "@/components/ui/ScrollCue";
@@ -32,8 +31,6 @@ export function HeroSection({ onOpenRsvp }: HeroSectionProps) {
         <Button variant="primary" fullWidth className="max-w-xs" onClick={onOpenRsvp}>
           Confirmar presença
         </Button>
-
-        <ShareButton />
       </div>
 
       <ScrollCue className="absolute bottom-6 left-1/2 -translate-x-1/2" />
