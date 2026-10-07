@@ -28,7 +28,8 @@ function getSheetsClient() {
  * Retorna se o registro foi feito para permitir contingência quando necessário.
  */
 export async function appendRsvpToSheet(
-  data: RsvpRequest
+  data: RsvpRequest,
+  guestId = data.requestId
 ): Promise<boolean> {
   try {
     const client = getSheetsClient();
@@ -53,20 +54,21 @@ export async function appendRsvpToSheet(
 
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: "Convidados!A:C",
+      range: "Convidados!A:D",
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[data.name, statusLabel, confirmedAt]],
+        values: [[guestId, data.name, statusLabel, confirmedAt]],
       },
     });
 
     if (data.attendanceStatus === "confirmed" && data.companions.length > 0) {
       await sheets.spreadsheets.values.append({
         spreadsheetId,
-        range: "Acompanhantes!A:C",
+        range: "Acompanhantes!A:D",
         valueInputOption: "USER_ENTERED",
         requestBody: {
           values: data.companions.map((companion) => [
+            guestId,
             data.name,
             companion.name,
             confirmedAt,

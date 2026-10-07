@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     const { guestId } = await persistRsvp(validation.data);
 
     // Google Sheets é apenas acompanhamento; falhas aqui não devem derrubar o RSVP.
-    void appendRsvpToSheet(validation.data);
+    void appendRsvpToSheet(validation.data, guestId);
 
     return NextResponse.json<RsvpResponse>({
       success: true,
