@@ -14,9 +14,6 @@ export function DiaperModal({ open, onClose }: DiaperModalProps) {
       <h2 id="diaper-modal-title" className="text-center font-script text-3xl font-semibold text-green-dark sm:text-4xl">
         Sugestões de Fraldas
       </h2>
-      <p className="mt-2 text-center text-sm text-brown-dark/80">
-        Para celebrar a vinda do Benjamin e encher o mundinho dele de carinho, deixamos algumas sugestões por aqui
-      </p>
       <div className="mt-5 flex w-full flex-col gap-4">
         {diaperSuggestions.map((product) => (
           <DiaperCard key={product.id} product={product} />

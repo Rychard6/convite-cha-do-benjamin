@@ -33,7 +33,7 @@ export function DiaperPreviewSection({ onOpenDiapers }: DiaperPreviewSectionProp
           Sugestões de Fraldas
         </h2>
         <p className="mt-2 max-w-xs text-balance text-center text-brown-dark/80">
-          Se quiser nos ajudar com a chegada do Benjamin, separamos algumas sugestões.
+          Para celebrar a vinda do Benjamin e encher o mundinho dele de carinho, deixamos algumas sugestões por aqui.
         </p>
 
         <Button variant="secondary" className="mt-6" onClick={onOpenDiapers}>
