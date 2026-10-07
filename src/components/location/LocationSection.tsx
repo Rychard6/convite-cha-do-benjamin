@@ -1,6 +1,6 @@
 import { ScreenShell } from "@/components/ui/ScreenShell";
 import { FloatingDecorations } from "@/components/ui/FloatingDecorations";
-import { Illustration } from "@/components/ui/Illustration";
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { eventConfig } from "@/config/event";
@@ -25,17 +25,14 @@ export function LocationSection() {
         </p>
 
         <div className="relative mt-6 flex w-full flex-col items-center gap-3 rounded-4xl border border-gold/30 bg-white/60 p-6 shadow-soft">
-          <div className="relative h-32 w-full overflow-hidden rounded-3xl bg-green-light">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative h-10 w-10">
-                <Illustration
-                  src="objects/moon.png"
-                  alt=""
-                  className="h-full w-full"
-                  sizes="60px"
-                />
-              </div>
-            </div>
+          <div className="relative h-48 w-full overflow-hidden rounded-3xl">
+            <Image
+              src="/assets/illustrations/backgrounds/mapa.png"
+              alt="Ursinho viajando de avião entre balões, nuvens e estrelas"
+              fill
+              sizes="(max-width: 640px) 100vw, 600px"
+              className="object-contain"
+            />
           </div>
 
           <p className="text-center text-sm font-medium text-brown-dark/90">
