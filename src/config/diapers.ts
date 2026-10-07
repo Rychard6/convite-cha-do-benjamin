@@ -7,6 +7,12 @@ export type DiaperSuggestion = {
 
 export const diaperSuggestions: DiaperSuggestion[] = [
   {
+    id: "huggies-supreme-care",
+    brand: "Huggies",
+    name: "Fralda Huggies Supreme Care",
+    image: "fraldas/huggies.png",
+  },
+  {
     id: "pampers-premium-care",
     brand: "Pampers",
     name: "Fralda Pampers Premium Care",
@@ -17,12 +23,6 @@ export const diaperSuggestions: DiaperSuggestion[] = [
     brand: "Pampers",
     name: "Fralda Pampers Comfort Sec",
     image: "fraldas/pampersCS.png",
-  },
-  {
-    id: "huggies-supreme-care",
-    brand: "Huggies",
-    name: "Fralda Huggies Supreme Care",
-    image: "fraldas/huggies.png",
   },
   {
     id: "mamypoko",
