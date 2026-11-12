@@ -10,7 +10,7 @@ export const eventConfig = {
   date: "14 de novembro de 2026",
   time: "16:00",
   isoDateTime: "2026-11-14T16:00:00-03:00",
-  address: "EQNP 25/30, Módulo Especial 'D' - Ao lado da Prefeitura do P. Sul",
+  address: "EQNP 26/30, Módulo Especial 'D' - Ao lado da Prefeitura do P. Sul",
   googleMapsUrl:
     "https://www.google.com/maps/search/?api=1&query=-15.8443552%2C-48.1199297",
   wazeUrl: "https://waze.com/ul?ll=-15.8443552%2C-48.1199297&navigate=yes",
